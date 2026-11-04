@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html lang="en"><head><meta charset="utf-8"><title>Skip Q – Book Smart. Wait Less.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5B3CC4">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#5B3CC4;--s:#EEE9FF;--bg:#F8F8FC;--tx:#222;--card:#fff;--mu:#6b6b80;--bd:#e4e0f2;--ok:#1d8a55;--bad:#c0392b;--blue:#1B2A9B;--blue-s:#EEF0FF;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#15131f;--tx:#f1eefc;--card:#201d30;--s:#2b2646;--mu:#a9a4c4;--bd:#35304f;--blue-s:#1e2250;color-scheme:dark}}
+html,body{height:100%;margin:0}*{box-sizing:border-box}
+body{font-family:Poppins,system-ui,sans-serif;background:var(--s);color:var(--tx);display:flex;justify-content:center}
+#app{width:100%;max-width:430px;height:100%;background:var(--bg);display:flex;flex-direction:column;position:relative}
+main{flex:1;overflow-y:auto;padding:16px 18px 24px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:18px;margin:18px 0 10px}h3{font-size:15px;margin:0}p{margin:0}.mu{color:var(--mu);font-size:13px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:14px;margin-bottom:12px}
+.btn{display:block;width:100%;min-height:44px;border:0;border-radius:14px;padding:13px;font:600 15px Poppins,sans-serif;background:var(--p);color:#fff;cursor:pointer;margin-top:10px}
+.btn.alt{background:var(--s);color:var(--p)}.btn.sm{display:inline-block;width:auto;min-height:40px;padding:7px 12px;font-size:12px;margin:6px 6px 0 0;border-radius:10px}
+.btn.bad{background:#fde8e6;color:var(--bad)}.btn:disabled{opacity:.45;cursor:not-allowed}
+input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:400 14px Poppins,sans-serif;margin-top:8px}
+:focus-visible{outline:2px solid var(--p);outline-offset:2px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.chip{flex:none;min-height:40px;padding:9px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:500 13px Poppins,sans-serif;cursor:pointer}
+.chip.on{background:var(--p);color:#fff;border-color:var(--p)}.chip:disabled{opacity:.4;text-decoration:line-through}
+.badge{font-size:11px;font-weight:600;border-radius:8px;padding:3px 8px;background:var(--s);color:var(--p)}
+.st-Completed{color:var(--ok)}.st-Cancelled,.st-Rejected,.st-No-show{color:var(--bad)}
+nav{display:flex;border-top:1px solid var(--bd);background:var(--card)}
+nav button{flex:1;min-height:48px;border:0;background:none;font:500 11px Poppins,sans-serif;color:var(--mu);cursor:pointer;position:relative}
+nav button.on{color:var(--p);font-weight:700}.dot{position:absolute;top:6px;right:22%;width:8px;height:8px;border-radius:50%;background:var(--bad)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;background:var(--p);color:#fff;font-weight:600}
+.top button{background:rgba(255,255,255,.2);color:#fff;border:0;border-radius:10px;padding:8px 10px;font:500 12px Poppins,sans-serif;cursor:pointer}
+.big{font-size:40px;font-weight:700;color:var(--p);line-height:1}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stats .card{text-align:center;margin:0}
+.code{font-size:26px;font-weight:700;letter-spacing:2px;color:var(--p);text-align:center;border:2px dashed var(--p);border-radius:16px;padding:14px;margin:14px 0}
+.back{background:none;border:0;color:var(--p);font:600 14px Poppins,sans-serif;padding:8px 0;cursor:pointer}
+.toast{position:absolute;left:18px;right:18px;bottom:76px;background:var(--tx);color:var(--bg);padding:12px;border-radius:12px;font-size:13px;text-align:center;z-index:5}
+.off{background:var(--bad);color:#fff;text-align:center;font-size:12px;padding:4px}
+.sk{height:64px;border-radius:18px;background:var(--s);margin-bottom:12px;animation:p 1.2s infinite alternate}@keyframes p{to{opacity:.4}}
+.login{flex:1;overflow-y:auto;display:flex;flex-direction:column;background:var(--bg);font-family:"Plus Jakarta Sans",Poppins,system-ui,sans-serif}
+.login-hero{background:var(--blue);color:#fff;text-align:center;padding:56px 20px 48px;display:flex;flex-direction:column;align-items:center;flex:none}
+.login-hero .logo{width:56px;height:56px}.login-hero h1{font-size:34px;font-weight:800;margin:30px 0 4px;letter-spacing:-.5px}.login-hero p{font-size:15px;font-weight:500;opacity:.9}
+.login-body{padding:28px 22px}.login-body h2{font-size:26px;font-weight:800;text-align:center;margin:0 0 4px}.login-body .sub{text-align:center;color:var(--mu);font-size:13px}
+.iam{text-align:center;font-size:13px;font-weight:500;margin:22px 0 12px}.roles{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.role{background:var(--card);border:1.5px solid var(--bd);border-radius:20px;padding:16px 12px;text-align:center;cursor:pointer;color:var(--tx);font-family:inherit}
+.role .ic{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.role b{display:block;font-size:15px}.role span{display:block;font-size:11px;color:var(--mu);margin-top:4px;line-height:1.35}
+.role.on{border-color:var(--blue);background:var(--blue-s);box-shadow:0 0 0 2px #1B2A9B33}
+.fld{margin-top:18px}.fld label{font-size:12px;font-weight:600}
+.inp{display:flex;align-items:center;gap:10px;border:1px solid var(--bd);background:var(--card);border-radius:14px;padding:0 12px;margin-top:8px;color:var(--mu)}
+.inp input{border:0;margin:0;padding:13px 0;background:none;outline:0;flex:1;min-width:0}
+.login .btn{background:var(--blue)}.lnk{background:none;border:0;color:var(--blue);font:600 13px inherit;font-family:inherit;cursor:pointer;padding:10px;width:100%}
+</style></head><body><div id="app"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script>
+/* ====== CONFIG: paste your Supabase project values ====== */
+const SUPABASE_URL="YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY="YOUR_SUPABASE_ANON_KEY";
+const VAPID_PUBLIC=""; // public VAPID key for push alerts when the app is closed (see README)
+const PAYMENTS_ENABLED=false; // Razorpay hook: off by default
+/* ======================================================== */
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const iso=d=>d.toLocaleDateString("en-CA");
+const dates=()=>[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()+i);return iso(d)});
+const fmt=d=>new Date(d+"T00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
+const hm=t=>String(t).slice(0,5);
+const ACT=s=>!["Completed","Cancelled","Rejected","No-show"].includes(s);
+const CATS=["Clinic","Salon","Service Centre","Diagnostic Centre","Beauty & Wellness"];
+let S={scr:"auth",tab:"home",cat:"All",q:"",lr:"customer",mode:"in",busy:false,load:false,toast:"",offline:false,od:iso(new Date()),d:iso(new Date()),user:null,list:[],mineB:[],ownB:null,ownBk:[],slots:[],info:null,pin:null,unread:0};
+const Biz=id=>S.list.find(b=>b.id==id);
+
+function toast(m){S.toast=m;render();clearTimeout(toast.t);toast.t=setTimeout(()=>{S.toast="";render()},2400)}
+async function run(fn){if(S.busy)return;S.busy=true;render(1);try{await fn()}catch(e){toast(msg(e))}S.busy=false;render()}
+const msg=e=>{const m=e&&e.message||String(e);return m.includes("SLOT_FULL")?"Slot just filled. Pick another time.":m.includes("PAST")?"That time has already passed.":m.includes("FORBIDDEN")?"You can’t do that.":m||"Something went wrong."}
+
+/* ---------- data ---------- */
+async function loadList(){const{data,error}=await sb.from("businesses").select("*, services(*)").order("name");if(error)throw error;S.list=data||[]}
+async function loadMine(){const{data,error}=await sb.from("bookings").select("*, businesses(name), services(name,duration_min)").eq("customer_id",S.user.id).order("created_at",{ascending:false});if(error)throw error;S.mineB=data||[]}
+async function loadOwner(){const{data:b,error}=await sb.from("businesses").select("*, services(*)").eq("owner_id",S.user.id).maybeSingle();if(error)throw error;S.ownB=b;
+ if(b){const{data}=await sb.from("bookings").select("*, profiles(name), services(name,duration_min)").eq("business_id",b.id).order("d").order("t").order("created_at");S.ownBk=data||[]}else{S.ownBk=[];const{data}=await sb.from("businesses").select("id,name,category,address").is("owner_id",null);S.unclaimed=data||[]}}
+async function loadSlots(biz,d){const{data}=await sb.from("slots").select("*").eq("business_id",biz).eq("date",d);S.slots=data||[]}
+function times(b){const out=[],[oh,om]=hm(b.open_time||"10:00").split(":").map(Number),[ch,cm]=hm(b.close_time||"13:00").split(":").map(Number),st=b.slot_minutes||30;
+ for(let m=oh*60+om;m<ch*60+cm;m+=st)out.push(String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0"));return out}
+const slotOf=t=>S.slots.find(s=>hm(s.time)==t)||{capacity:2,booked:0};
+const isPast=(d,t)=>new Date(d+"T"+t)<new Date();
+async function load(){S.load=true;render();try{
+ if(S.user.role=="owner"){await loadOwner();if(S.ownB&&S.scr=="o_slots")await loadSlots(S.ownB.id,S.od)}
+ else{if(["home","details"].includes(S.scr))await loadList();if(["mine","track","success"].includes(S.scr)){await loadMine();if(S.scr=="track")await loadInfo()}
+  if(S.scr=="book"){await loadSlots(S.b,S.d)}}
+ }catch(e){toast(msg(e))}S.load=false;render()}
+async function loadInfo(){const b=trackB();S.info=null;if(b&&ACT(b.status)){const{data}=await sb.rpc("queue_info",{p_code:b.code});S.info=data&&data[0]}}
+const trackB=()=>S.mineB.find(x=>x.code==S.pin&&1)||S.mineB.find(x=>ACT(x.status));
+function go(scr,x){Object.assign(S,{scr},x||{});load()}
+
+/* ---------- auth ---------- */
+async function authSubmit(){const em=$("#em").value.trim(),pw=$("#pw").value,nm=$("#nm")?$("#nm").value.trim():"";
+ if(!/^\S+@\S+\.\S+$/.test(em))return toast("Enter a valid email.");if(pw.length<6)return toast("Password must be at least 6 characters.");
+ run(async()=>{if(S.mode=="up"){if(!nm)throw new Error("Enter your name.");
+   const{data,error}=await sb.auth.signUp({email:em,password:pw,options:{data:{name:nm,role:S.lr}}});if(error)throw error;if(!data.session)toast("Check your email to verify your account.")}
+  else{const{error}=await sb.auth.signInWithPassword({email:em,password:pw});if(error)throw error}})}
+async function forgot(){const em=$("#em").value.trim();if(!em)return toast("Enter your email first.");
+ const{error}=await sb.auth.resetPasswordForEmail(em,{redirectTo:location.href.split("#")[0]});toast(error?error.message:"Password reset link sent.")}
+async function init(session){if(!session){S.user=null;S.scr="auth";return render()}
+ const{data,error}=await sb.from("profiles").select("*").eq("id",session.user.id).single();if(error)return toast(msg(error));
+ S.user=data;S.tab=data.role=="owner"?"dash":"home";S.scr=data.role=="owner"?"o_dash":"home";await load();listen()}
+let ch;function listen(){if(ch)sb.removeChannel(ch);
+ ch=sb.channel("bk").on("postgres_changes",{event:"*",schema:"public",table:"bookings"},p=>{
+  const n=p.new;if(n&&S.user&&n.customer_id==S.user.id&&p.eventType=="UPDATE"){toast("Booking "+n.code+": "+n.status);notify(n);if(S.scr!="track")S.unread++}
+  if(S.user&&!S.busy)load()}).subscribe()}
+const MSG={Confirmed:"Your booking is approved.",Rejected:"Your booking was rejected.",Waiting:"You’re checked in and in the queue.","Your Turn":"It’s your turn! Please go in now.","In Service":"Your service has started.",Completed:"All done. Thank you!","No-show":"Your booking was marked as a no-show."};
+function notify(n){if(!("Notification"in window)||Notification.permission!="granted"||!MSG[n.status])return;
+ navigator.serviceWorker?.ready.then(r=>r.showNotification("Skip Q · "+n.code,{body:MSG[n.status],icon:"icon.svg",tag:n.code})).catch(()=>{})}
+const u8=b=>{const p="=".repeat((4-b.length%4)%4),r=atob((b+p).replace(/-/g,"+").replace(/_/g,"/"));return Uint8Array.from([...r].map(c=>c.charCodeAt(0)))};
+async function askNotify(){if(!("Notification"in window))return toast("Notifications aren’t supported here.");const r=await Notification.requestPermission();
+ if(r=="granted"&&VAPID_PUBLIC&&"PushManager"in window){try{const reg=await navigator.serviceWorker.ready;
+  const sub=await reg.pushManager.getSubscription()||await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:u8(VAPID_PUBLIC)});
+  await sb.from("push_subscriptions").upsert({user_id:S.user.id,endpoint:sub.endpoint,sub:sub.toJSON()},{onConflict:"endpoint"})}catch(e){}}
+ toast(r=="granted"?"Notifications on.":"Notifications blocked.");render()}
+async function logout(){await sb.auth.signOut()}
+
+/* ---------- customer actions ---------- */
+async function book(){run(async()=>{const{data,error}=await sb.rpc("book_slot",{p_biz:S.b,p_svc:S.svc,p_date:S.d,p_time:S.t});
+ if(error){S.t=null;await loadSlots(S.b,S.d);throw error}S.pin=data.code;await loadMine();S.scr="success";await loadInfo()})}
+const claimB=id=>run(async()=>{const{error}=await sb.rpc("claim_business",{p_id:id});if(error)throw error;S.scr="o_dash";S.tab="dash";await load();toast("Business claimed.")});
+const setSt=(id,st)=>run(async()=>{const{error}=await sb.rpc("set_status",{p_id:id,p_status:st});if(error)throw error;await load()});
+async function saveProfile(){run(async()=>{const ph=$("#ph").value.trim(),nm=$("#pn").value.trim();if(ph&&!/^\d{10}$/.test(ph))throw new Error("Phone must be 10 digits.");
+ const{error}=await sb.from("profiles").update({name:nm,phone:ph}).eq("id",S.user.id);if(error)throw error;Object.assign(S.user,{name:nm,phone:ph});toast("Profile saved.")})}
+async function delAcc(){if(!confirm("Delete your account and all bookings permanently?"))return;await sb.rpc("delete_me");await sb.auth.signOut()}
+function sortNear(){if(!navigator.geolocation)return toast("Location not available.");
+ navigator.geolocation.getCurrentPosition(p=>{const{latitude:a,longitude:o}=p.coords,d=b=>b.lat==null?1e9:Math.hypot(b.lat-a,(b.lng-o)*Math.cos(a*Math.PI/180));S.list.sort((x,y)=>d(x)-d(y));toast("Sorted by distance.")},()=>toast("Location permission denied."))}
+
+/* ---------- owner actions ---------- */
+async function saveBiz(){run(async()=>{const v=k=>$("#"+k).value.trim(),o={name:v("bn"),category:v("bc"),address:v("ba"),description:v("bd"),open_time:v("bo"),close_time:v("bx"),slot_minutes:+v("bs")};
+ if(!o.name||!o.address)throw new Error("Enter business name and address.");if(o.open_time>=o.close_time)throw new Error("Closing time must be after opening time.");
+ if(S.pos)Object.assign(o,S.pos);
+ const{error}=S.ownB?await sb.from("businesses").update(o).eq("id",S.ownB.id):await sb.from("businesses").insert({...o,owner_id:S.user.id});
+ if(error)throw error;toast("Business saved.");if(!S.ownB){S.scr="o_dash";S.tab="dash"}await load()})}
+function myLoc(){navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>{S.pos={lat:p.coords.latitude,lng:p.coords.longitude};toast("Location captured. Tap Save.")},()=>toast("Location permission denied.")):toast("Location not available.")}
+async function addSvc(){const n=$("#sn").value.trim(),p=+$("#sp").value,d=+$("#sd").value;if(!n||p<0||!d)return toast("Enter a name, price and duration.");
+ run(async()=>{const{error}=await sb.from("services").insert({business_id:S.ownB.id,name:n,price:p,duration_min:d});if(error)throw error;await load()})}
+const togSvc=(id,on)=>run(async()=>{const{error}=await sb.from("services").update({active:!on}).eq("id",id);if(error)throw error;await load()});
+const delSvc=id=>confirm("Delete this service?")&&run(async()=>{const{error}=await sb.from("services").delete().eq("id",id);if(error)throw error;await load()});
+const cap=(t,delta)=>run(async()=>{const s=slotOf(t),c=s.capacity+delta;if(c<Math.max(s.booked,1))throw new Error("Capacity can’t go below bookings already made.");
+ const{error}=await sb.from("slots").upsert({business_id:S.ownB.id,date:S.od,time:t,capacity:c},{onConflict:"business_id,date,time"});if(error)throw error;await loadSlots(S.ownB.id,S.od)});
+
+/* ---------- views ---------- */
+const badge=s=>`<span class="badge st-${esc(s)}">${esc(s)}</span>`;
+const skel=()=>`<main><div class="sk"></div><div class="sk"></div><div class="sk"></div></main>`;
+const ico={u:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>',
+ s:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16l1.5 5.5c0 1.4-1.1 2.5-2.5 2.5-1 0-1.8-.5-2.3-1.2-.5.7-1.3 1.2-2.2 1.2s-1.7-.5-2.2-1.2c-.5.7-1.3 1.2-2.2 1.2s-1.8-.5-2.3-1.2C6.8 11.5 6 12 5 12c-1.4 0-2.5-1.1-2.5-2.5z"/><path d="M5 13.5h14V20H5z"/></svg>',
+ m:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+ l:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>'};
+const V={
+auth:()=>{const up=S.mode=="up";return`<div class="login"><div class="login-hero"><svg class="logo" viewBox="0 0 64 64"><rect x="26" y="3" width="12" height="6" rx="2" fill="#fff"/><rect x="30" y="8" width="4" height="6" fill="#fff"/><circle cx="32" cy="38" r="22" fill="#fff"/><path d="M32 24v14" stroke="#1B2A9B" stroke-width="4" stroke-linecap="round"/></svg><h1>Skip Q</h1><p>Time is money</p></div>
+<div class="login-body"><h2>${up?"Create account":"Welcome Back"}</h2><p class="sub">${up?"Join Skip Q to save time":"Sign in to manage your time efficiently"}</p>
+<p class="iam">I am a...</p><div class="roles"><button class="role ${S.lr=="customer"?"on":""}" onclick="S.lr='customer';render(1)"><div class="ic">${ico.u}</div><b>Customer</b><span>Book services &amp; track queues</span></button>
+<button class="role ${S.lr=="owner"?"on":""}" onclick="S.lr='owner';render(1)"><div class="ic">${ico.s}</div><b>Business</b><span>Manage slots &amp; daily bookings</span></button></div>
+${up?`<div class="fld"><label for="nm">Full name</label><div class="inp"><input id="nm" autocomplete="name" placeholder="Your name"></div></div>`:""}
+<div class="fld"><label for="em">Email Address</label><div class="inp">${ico.m}<input id="em" type="email" autocomplete="email" placeholder="you@example.com"></div></div>
+<div class="fld"><label for="pw">Password</label><div class="inp">${ico.l}<input id="pw" type="password" autocomplete="${up?"new-password":"current-password"}" placeholder="••••••••"></div></div>
+<button class="btn" ${S.busy?"disabled":""} onclick="authSubmit()">${up?"Sign up":"Sign in"}</button>
+${up?"":`<button class="lnk" onclick="forgot()">Forgot password?</button>`}
+<button class="lnk" onclick="S.mode='${up?"in":"up"}';render()">${up?"Already have an account? Sign in":"New here? Create an account"}</button></div></div>`},
+home:()=>{const l=S.list.filter(b=>(S.cat=="All"||b.category==S.cat)&&b.name.toLowerCase().includes(S.q.toLowerCase()));
+ return`<main><h1>Hello, ${esc((S.user.name||"there").split(" ")[0])}</h1><p class="mu">Find a business and skip the queue.</p>
+<input aria-label="Search businesses" placeholder="Search businesses" value="${esc(S.q)}" oninput="S.q=this.value;render(1)">
+<div class="chips" style="margin-top:10px">${["All",...CATS].map(c=>`<button class="chip ${S.cat==c?"on":""}" onclick="S.cat=this.dataset.c;render()" data-c="${esc(c)}">${esc(c)}</button>`).join("")}</div>
+<div class="row"><h2>Nearby businesses</h2><button class="btn sm alt" onclick="sortNear()">Sort by distance</button></div>
+${l.map(b=>`<div class="card" onclick="go('details',{b:'${b.id}'})" style="cursor:pointer"><h3>${esc(b.name)}</h3><p class="mu">${esc(b.category)} · ${esc(b.address)}</p></div>`).join("")||'<p class="mu">No match. Try another name or category.</p>'}</main>`},
+details:()=>{const b=Biz(S.b);if(!b)return skel();return`<main><button class="back" onclick="go('home')">← Back</button><h1>${esc(b.name)}</h1><p class="mu">${esc(b.category)} · ${esc(b.address)}</p><p style="margin:10px 0">${esc(b.description)}</p><h2>Services</h2>
+${b.services.filter(s=>s.active).map(s=>`<div class="card"><div class="row"><div><h3>${esc(s.name)}</h3><p class="mu">${s.duration_min} min</p></div><b>₹${s.price}</b></div><button class="btn sm" onclick="go('book',{svc:'${s.id}',t:null,d:iso(new Date())})">Book this service</button></div>`).join("")||'<p class="mu">No services available.</p>'}</main>`},
+book:()=>{const b=Biz(S.b),s=b.services.find(x=>x.id==S.svc);return`<main><button class="back" onclick="go('details')">← Back</button><h1>Book appointment</h1><p class="mu">${esc(b.name)} · ${esc(s.name)} · ₹${s.price}</p>
+<h2>Date</h2><div class="chips">${dates().map(d=>`<button class="chip ${S.d==d?"on":""}" onclick="S.d='${d}';S.t=null;go('book')">${fmt(d)}</button>`).join("")}</div>
+<h2>Time</h2><div class="chips" style="flex-wrap:wrap">${times(b).map(t=>{const sl=slotOf(t),left=sl.capacity-sl.booked,off=left<=0||isPast(S.d,t);return`<button class="chip ${S.t==t?"on":""}" ${off?"disabled":""} onclick="S.t='${t}';render()">${t} · ${Math.max(left,0)} left</button>`}).join("")}</div>
+<button class="btn" ${S.t&&!S.busy?"":"disabled"} onclick="book()">Confirm booking</button></main>`},
+success:()=>{const b=S.mineB.find(x=>x.code==S.pin);if(!b)return skel();const w=S.info?S.info.wait:0;return`<main><div style="text-align:center;margin-top:20px"><div style="font-size:48px">✅</div><h1>Booking requested</h1><p class="mu">The business will approve it shortly. Show this ticket on arrival.</p></div>
+<div class="code">${esc(b.code)}</div><div class="card"><p><b>${esc(b.businesses.name)}</b></p><p class="mu">${esc(b.services?.name)} · ${fmt(b.d)} at ${hm(b.t)}</p><p class="mu">Estimated wait: about ${w} min (an estimate)</p></div>
+<button class="btn" onclick="S.tab='queue';go('track')">Track my queue</button><button class="btn alt" onclick="S.tab='mine';go('mine')">View my bookings</button></main>`},
+mine:()=>{const c=b=>`<div class="card"><div class="row"><h3>${esc(b.businesses.name)}</h3>${badge(b.status)}</div><p class="mu">${esc(b.services?.name)} · ${fmt(b.d)} ${hm(b.t)} · ${esc(b.code)}</p>${ACT(b.status)?`<button class="btn sm" onclick="S.pin='${b.code}';S.tab='queue';go('track')">Track queue</button><button class="btn sm bad" onclick="setSt('${b.id}','Cancelled')">Cancel</button>`:""}</div>`;
+ const up=S.mineB.filter(b=>ACT(b.status)),h=S.mineB.filter(b=>!ACT(b.status));
+ return`<main><h1>My bookings</h1><h2>Upcoming</h2>${up.map(c).join("")||'<p class="mu">Nothing booked yet. Pick a business on Home.</p>'}<h2>History</h2>${h.map(c).join("")||'<p class="mu">No past bookings.</p>'}</main>`},
+track:()=>{const b=trackB();if(!b)return`<main><h1>Queue tracking</h1><p class="mu">No active booking. Book a slot to see your queue.</p></main>`;const q=S.info||{pos:1,ahead:0,wait:0};
+ return`<main><h1>Queue tracking</h1><p class="mu">${esc(b.businesses.name)} · ${esc(b.code)}</p><div class="card" style="text-align:center;margin-top:12px">${badge(b.status)}<p class="big" style="margin-top:10px">${ACT(b.status)&&b.status!="Pending"?"#"+q.pos:"–"}</p><p class="mu">your position</p></div>
+<div class="stats"><div class="card"><h3>${q.ahead}</h3><p class="mu">ahead of you</p></div><div class="card"><h3>~${q.wait} min</h3><p class="mu">estimated wait</p></div></div>
+<div class="card" style="margin-top:12px"><p class="mu">Appointment: ${fmt(b.d)} at ${hm(b.t)}</p></div><p class="mu">Waiting times are estimates. This screen updates live.</p>${"Notification"in window&&Notification.permission=="default"?`<button class="btn alt" onclick="askNotify()">Turn on turn-up alerts</button>`:""}</main>`},
+profile:()=>`<main><h1>${S.user.role=="owner"?"Owner profile":"My profile"}</h1><div class="card"><label class="mu" for="pn">Name</label><input id="pn" value="${esc(S.user.name)}"><p class="mu" style="margin-top:10px">${esc(S.user.email)}</p><label class="mu" for="ph">Phone (10 digits)</label><input id="ph" inputmode="numeric" maxlength="10" value="${esc(S.user.phone)}"><button class="btn" onclick="saveProfile()">Save</button></div>
+${S.user.role=="owner"&&S.ownB?bizForm():""}<button class="btn alt" onclick="logout()">Log out</button><button class="btn bad" onclick="delAcc()">Delete account</button></main>`,
+o_setup:()=>`<main><h1>Set up your business</h1>${(S.unclaimed||[]).length?`<h2>Already listed? Claim yours</h2>${S.unclaimed.map(b=>`<div class="card"><div class="row"><div><h3>${esc(b.name)}</h3><p class="mu">${esc(b.category)} · ${esc(b.address)}</p></div><button class="btn sm" onclick="claimB('${b.id}')">Claim</button></div></div>`).join("")}<h2>Or add a new business</h2>`:`<p class="mu">Customers will find you after you save.</p>`}${bizForm()}<button class="btn alt" onclick="logout()">Log out</button></main>`,
+o_dash:()=>{const bs=S.ownBk,today=iso(new Date()),n=s=>bs.filter(b=>b.status==s).length;return`<main><h1>Dashboard</h1><p class="mu">${esc(S.ownB.name)}</p><div class="stats" style="margin-top:12px">
+<div class="card"><div class="big">${bs.length}</div><p class="mu">Total bookings</p></div><div class="card"><div class="big">${n("Pending")}</div><p class="mu">Awaiting approval</p></div>
+<div class="card"><div class="big">${bs.filter(b=>ACT(b.status)).length}</div><p class="mu">In queue</p></div><div class="card"><div class="big">${bs.filter(b=>b.status=="Completed"&&b.d==today).length}</div><p class="mu">Completed today</p></div></div>
+${"Notification"in window&&Notification.permission=="default"?`<button class="btn alt" onclick="askNotify()">Alert me of new requests</button>`:""}<h2>Business hours</h2><div class="card"><p class="mu">${hm(S.ownB.open_time)} – ${hm(S.ownB.close_time)} · ${S.ownB.slot_minutes}-min slots. Edit in Profile.</p></div></main>`},
+o_book:()=>{const acts={Pending:[["Approve","Confirmed"],["Reject","Rejected","bad"]],Confirmed:[["Mark arrived","Waiting"]],Waiting:[["Call in","Your Turn"]],"Your Turn":[["Start service","In Service"]],"In Service":[["Complete","Completed"]]};
+ return`<main><h1>Bookings and queue</h1><p class="mu">Changes here appear instantly for the customer.</p><h2>Today and upcoming</h2>${S.ownBk.filter(b=>ACT(b.status)||b.d==iso(new Date())).map(b=>`<div class="card"><div class="row"><h3>${esc(b.profiles?.name||"Customer")}</h3>${badge(b.status)}</div><p class="mu">${esc(b.services?.name)} · ${fmt(b.d)} ${hm(b.t)} · ${esc(b.code)}</p>
+${(acts[b.status]||[]).map(a=>`<button class="btn sm ${a[2]||""}" onclick="setSt('${b.id}','${a[1]}')">${a[0]}</button>`).join("")}${["Pending","Confirmed","Waiting"].includes(b.status)?`<button class="btn sm bad" onclick="setSt('${b.id}','No-show')">No-show</button>`:""}</div>`).join("")||'<p class="mu">No bookings yet.</p>'}</main>`},
+o_svc:()=>`<main><h1>Services</h1>${S.ownB.services.map(s=>`<div class="card"><div class="row"><div><h3>${esc(s.name)}</h3><p class="mu">${s.duration_min} min · ₹${s.price}</p></div><div><button class="btn sm ${s.active?"alt":""}" onclick="togSvc('${s.id}',${s.active})">${s.active?"Active":"Hidden"}</button><button class="btn sm bad" onclick="delSvc('${s.id}')">Delete</button></div></div></div>`).join("")}
+<h2>Add service</h2><input id="sn" aria-label="Service name" placeholder="Service name"><input id="sp" type="number" min="0" placeholder="Price (₹)"><input id="sd" type="number" min="1" placeholder="Duration (minutes)"><button class="btn" onclick="addSvc()">Add service</button></main>`,
+o_slots:()=>`<main><h1>Slots</h1><div class="chips">${dates().map(d=>`<button class="chip ${S.od==d?"on":""}" onclick="S.od='${d}';go('o_slots')">${fmt(d)}</button>`).join("")}</div>
+${times(S.ownB).map(t=>{const sl=slotOf(t);return`<div class="card"><div class="row"><div><h3>${t}</h3><p class="mu">${sl.booked} of ${sl.capacity} booked</p></div><div><button class="btn sm alt" aria-label="Decrease" onclick="cap('${t}',-1)">−</button><button class="btn sm alt" aria-label="Increase" onclick="cap('${t}',1)">+</button></div></div></div>`}).join("")}<p class="mu">Use − and + to change how many customers a slot can take.</p></main>`};
+function bizForm(){const b=S.ownB||{open_time:"10:00",close_time:"13:00",slot_minutes:30};return`<div class="card"><h3>Business details</h3>
+<input id="bn" aria-label="Business name" placeholder="Business name" value="${esc(b.name)}"><select id="bc" aria-label="Category">${CATS.map(c=>`<option ${b.category==c?"selected":""}>${esc(c)}</option>`).join("")}</select>
+<input id="ba" aria-label="Address" placeholder="Area / address" value="${esc(b.address)}"><textarea id="bd" rows="2" aria-label="Description" placeholder="Short description">${esc(b.description)}</textarea>
+<div class="row"><input id="bo" type="time" aria-label="Opens" value="${hm(b.open_time)}"><input id="bx" type="time" aria-label="Closes" value="${hm(b.close_time)}"></div>
+<select id="bs" aria-label="Slot length">${[10,15,20,30,45,60].map(m=>`<option value="${m}" ${b.slot_minutes==m?"selected":""}>${m}-min slots</option>`).join("")}</select>
+<button class="btn sm alt" onclick="myLoc()">Use my location</button><button class="btn" onclick="saveBiz()">Save business</button></div>`}
+
+/* ---------- shell ---------- */
+function navBar(items){return`<nav>${items.map(([k,l,s])=>`<button class="${S.tab==k?"on":""}" onclick="S.tab='${k}';${k=="queue"?"S.unread=0;":""}go('${s}')">${l}${k=="queue"&&S.unread?'<i class="dot"></i>':""}</button>`).join("")}</nav>`}
+function render(keep){const act=document.activeElement,id=keep&&act&&act.id?act.id:null,val=act&&act.value,pos=act&&act.selectionStart;
+ const u=S.user,own=u&&u.role=="owner",needBiz=own&&!S.ownB&&!S.load,scr=needBiz?"o_setup":S.scr;
+ let body=!u?V.auth():S.load&&!S.list.length&&!S.mineB.length&&!S.ownB&&scr!="profile"?skel():(V[scr]?V[scr]():skel());
+ if(own&&!S.ownB&&scr!="o_setup")body=skel();
+ $("#app").innerHTML=(S.offline?'<div class="off" role="alert">You’re offline. Reconnect to continue.</div>':"")+(u?`<div class="top"><span>Skip Q</span><span style="font-size:12px;font-weight:500">${esc(u.name||u.email)}</span></div>`:"")+body
+ +(u&&!own?navBar([["home","Home","home"],["mine","Bookings","mine"],["queue","Queue","track"],["profile","Profile","profile"]]):"")
+ +(own&&S.ownB?navBar([["dash","Dashboard","o_dash"],["book","Queue","o_book"],["svc","Services","o_svc"],["slots","Slots","o_slots"],["profile","Profile","profile"]]):"")
+ +(S.toast?`<div class="toast" role="status" aria-live="polite">${esc(S.toast)}</div>`:"");
+ if(id){const e=document.getElementById(id);if(e){e.focus();if(val!=null&&e.value!==val)e.value=val;try{e.setSelectionRange(pos,pos)}catch(_){}}}}
+
+addEventListener("online",()=>{S.offline=false;render()});addEventListener("offline",()=>{S.offline=true;render()});
+const mf=document.createElement("link");mf.rel="manifest";mf.href="manifest.webmanifest";document.head.appendChild(mf);
+if("serviceWorker"in navigator&&location.protocol.startsWith("http"))addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+render();
+sb.auth.onAuthStateChange((ev,session)=>{if(ev=="INITIAL_SESSION"||ev=="SIGNED_IN"||ev=="SIGNED_OUT")setTimeout(()=>init(session),0)});
+</script></body></html>
