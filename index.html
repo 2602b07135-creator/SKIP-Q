@@ -124,7 +124,7 @@ async function book(){run(async()=>{const{data,error}=await sb.rpc("book_slot",{
  if(error){S.t=null;await loadSlots(S.b,S.d);throw error}S.pin=data.code;await loadMine();S.scr="success";await loadInfo()})}
 const claimB=id=>run(async()=>{const{error}=await sb.rpc("claim_business",{p_id:id});if(error)throw error;S.scr="o_dash";S.tab="dash";await load();toast("Business claimed.")});
 const setSt=(id,st)=>run(async()=>{const{error}=await sb.rpc("set_status",{p_id:id,p_status:st});if(error)throw error;await load()});
-async function saveProfile(){run(async()=>{const ph=$("#ph").value.trim(),nm=$("#pn").value.trim();if(ph&&!/^\d{10}$/.test(ph))throw new Error("Phone must be 10 digits.");
+async function saveProfile(){run(async()=>{const ph=$("#ph").value.trim()||S.user.phone||"",nm=$("#pn").value.trim()||S.user.name||"";if(ph&&!/^\d{10}$/.test(ph))throw new Error("Phone must be 10 digits.");
  const{error}=await sb.from("profiles").update({name:nm,phone:ph}).eq("id",S.user.id);if(error)throw error;Object.assign(S.user,{name:nm,phone:ph});toast("Profile saved.")})}
 async function delAcc(){if(!confirm("Delete your account and all bookings permanently?"))return;await sb.rpc("delete_me");await sb.auth.signOut()}
 function sortNear(){if(!navigator.geolocation)return toast("Location not available.");
