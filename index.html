@@ -131,7 +131,7 @@ function sortNear(){if(!navigator.geolocation)return toast("Location not availab
  navigator.geolocation.getCurrentPosition(p=>{const{latitude:a,longitude:o}=p.coords,d=b=>b.lat==null?1e9:Math.hypot(b.lat-a,(b.lng-o)*Math.cos(a*Math.PI/180));S.list.sort((x,y)=>d(x)-d(y));toast("Sorted by distance.")},()=>toast("Location permission denied."))}
 
 /* ---------- owner actions ---------- */
-async function saveBiz(){run(async()=>{const v=k=>$("#"+k).value.trim(),o={name:v("bn"),category:v("bc"),address:v("ba"),description:v("bd"),open_time:v("bo"),close_time:v("bx"),slot_minutes:+v("bs")};
+async function saveBiz(){run(async()=>{const v=k=>$("#"+k).value.trim(),o={name:v("bn"),category:v("bc"),address:v("ba"),description:v("bd"),phone:v("bp"),open_time:v("bo"),close_time:v("bx"),slot_minutes:+v("bs")};
  if(!o.name||!o.address)throw new Error("Enter business name and address.");if(o.open_time>=o.close_time)throw new Error("Closing time must be after opening time.");
  if(S.pos)Object.assign(o,S.pos);
  const{error}=S.ownB?await sb.from("businesses").update(o).eq("id",S.ownB.id):await sb.from("businesses").insert({...o,owner_id:S.user.id});
